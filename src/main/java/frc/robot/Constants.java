@@ -54,15 +54,15 @@ public final class Constants {
 
         /* SPARK MAX CAN IDs */
         /* Driving IDs */
-        public static final int frontLeftDrivingId = 3;
+        public static final int frontLeftDrivingId = 22;
         public static final int frontRightDrivingId = 32;
-        public static final int backRightDrivingId = 8;
-        public static final int backLeftDrivingId = 22;
+        public static final int backRightDrivingId = 42;
+        public static final int backLeftDrivingId = 7;
         /* Turning IDs */
         public static final int frontLeftTurningId = 5;
         public static final int frontRightTurningId = 2;
         public static final int backRightTurningId = 7;
-        public static final int backLeftTurningId = 4;
+        public static final int backLeftTurningId = 40;
         /* Other */
         public static final boolean isGyroReversed = false;
     }
