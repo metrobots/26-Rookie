@@ -22,6 +22,8 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // TODO: Set to CAN IDS real values.
+
     public static final class OperatorConstants {
         public static final int primaryControllerPort = 0;
         public static final double driveDeadband = 0.05;
@@ -34,6 +36,8 @@ public final class Constants {
         public static final double maxSpeed = 4.8;
         /** Max angular speed in radians per second. */
         public static final double maxAngularSpeed = 2 * Math.PI;
+        /** Dampens the inputs from controller. */
+        public static final double driveInputDampeningFactor = 0.5;
         // TODO: Measure chassis.
         /** Horizontal center distance in meters (left to right). */
         public static final double horizontalChassisWidth = Units.inchesToMeters(26.5);
@@ -79,6 +83,14 @@ public final class Constants {
         public static final double drivingMotorReduction = (45.0 * 22) / (drivingPinionTeeth * 15);
         public static final double driveWheelFreeSpeedRps = (drivingMotorFreeSpeedRps * wheelCircumferenceMeters)
                 / drivingMotorReduction;
+    }
+
+    public static final class ClimbConstants {
+        public static final int climbMotorId = 0;
+    }
+
+    public static final class ShooterConstants {
+        public static final int shooterMotorId = 0;
     }
 
     public static final class AutoConstants {
