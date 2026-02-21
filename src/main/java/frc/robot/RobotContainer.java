@@ -72,8 +72,8 @@ public class RobotContainer {
      * joysticks}.
      */
     private void configureBindings() {
-        // Example button bindings. Might change later.
-        primaryController.b().whileTrue(new Climb(climb));
+        // Example button bindings.
+        primaryController.b().onTrue(new Climb(climb));
         primaryController.b().onFalse(new Declimb(climb));
     }
 
