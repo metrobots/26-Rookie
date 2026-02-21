@@ -22,16 +22,14 @@ import frc.robot.Constants.ClimbConstants;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.XboxController;
-
-public class Climb extends SubsystemBase {
+public class ClimbSubsystem extends SubsystemBase {
     /** Use a closed loop, positional controller for controlling the climb mechanism. See
      * https://docs.revrobotics.com/revlib/spark/closed-loop for documentation. See
      * https://github.com/metrobots/26-final/tree/main/src/main/java/frc/robot/subsystems/climb for
      * an example. */
     private final SparkMax climbMotor;
 
-    public Climb() {
+    public ClimbSubsystem() {
         climbMotor = new SparkMax(ClimbConstants.climbMotorId, MotorType.kBrushless);
     }
 

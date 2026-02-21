@@ -93,6 +93,10 @@ public final class Constants {
         public static final int shooterMotorId = 0;
     }
 
+    public static final class IntakeConstants {
+        public static final int intakeMotorId = 0;
+    }
+
     public static final class AutoConstants {
         public static final double maxSpeedsMetersPerSecond = 3;
         public static final double maxAccelerationMetersPerSecondSquared = 3;
