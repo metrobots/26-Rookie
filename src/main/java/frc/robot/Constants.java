@@ -40,14 +40,14 @@ public final class Constants {
         public static final double driveInputDampeningFactor = 0.5;
         // TODO: Measure chassis.
         /** Horizontal center distance in meters (left to right). */
-        public static final double horizontalChassisWidth = Units.inchesToMeters(26.5);
+        public static final double chassisWidth = Units.inchesToMeters(26.5);
         /** Vertical wheel center distance in meters (front to back). */
-        public static final double verticalChassisWidth = Units.inchesToMeters(26.5);
+        public static final double chassisLength = Units.inchesToMeters(26.5);
         public static final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(
-                new Translation2d(verticalChassisWidth / 2, horizontalChassisWidth / 2),
-                new Translation2d(verticalChassisWidth / 2, -horizontalChassisWidth / 2),
-                new Translation2d(-verticalChassisWidth / 2, horizontalChassisWidth / 2),
-                new Translation2d(-verticalChassisWidth / 2, -horizontalChassisWidth / 2));
+                new Translation2d(chassisLength / 2, chassisWidth / 2),
+                new Translation2d(chassisLength / 2, -chassisWidth / 2),
+                new Translation2d(-chassisLength / 2, chassisWidth / 2),
+                new Translation2d(-chassisLength / 2, -chassisWidth / 2));
 
         /* Angular offsets of the modules relative to the chassis in radians */
         // TODO: Zero encoders
@@ -95,6 +95,7 @@ public final class Constants {
 
     public static final class IntakeConstants {
         public static final int intakeMotorId = 0;
+        public static final int pivotMotorId = 0;
     }
 
     public static final class AutoConstants {

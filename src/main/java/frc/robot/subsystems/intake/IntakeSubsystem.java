@@ -8,8 +8,10 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
     private final SparkMax intakeMotor;
+    private final SparkMax pivotMotor;
 
     public IntakeSubsystem() {
         intakeMotor = new SparkMax(IntakeConstants.intakeMotorId, MotorType.kBrushless);
+        pivotMotor = new SparkMax(IntakeConstants.pivotMotorId, MotorType.kBrushless);
     }
 }
