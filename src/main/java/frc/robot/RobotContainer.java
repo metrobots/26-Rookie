@@ -6,12 +6,13 @@ package frc.robot;
 
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.climb.ClimbSubsystem;
+import frc.robot.subsystems.climb.commands.Climb;
+import frc.robot.subsystems.climb.commands.Declimb;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
+import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystem;
 import edu.wpi.first.math.MathUtil;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Drivetrain.Commands.ExampleCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -28,8 +29,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
-    private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+    private final ClimbSubsystem climb = new ClimbSubsystem();
+    private final ShooterSubsystem shooter = new ShooterSubsystem();
+    private final IntakeSubsystem intake = new IntakeSubsystem();
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController primaryController = new CommandXboxController(
@@ -44,9 +47,12 @@ public class RobotContainer {
         // aye aye captain - malick 
         drivetrain.setDefaultCommand(new RunCommand(() -> {
             drivetrain.drive(
-                    -MathUtil.applyDeadband(primaryController.getLeftY(), OperatorConstants.driveDeadband),
-                    -MathUtil.applyDeadband(primaryController.getLeftX(), OperatorConstants.driveDeadband),
-                    -MathUtil.applyDeadband(primaryController.getRightX(), OperatorConstants.driveDeadband),
+                    -MathUtil.applyDeadband(primaryController.getLeftY(), OperatorConstants.driveDeadband)
+                            * DriveConstants.driveInputDampeningFactor,
+                    -MathUtil.applyDeadband(primaryController.getLeftX(), OperatorConstants.driveDeadband)
+                            * DriveConstants.driveInputDampeningFactor,
+                    -MathUtil.applyDeadband(primaryController.getRightX(), OperatorConstants.driveDeadband)
+                            * DriveConstants.driveInputDampeningFactor,
                     false /* TODO: test drive field relative. */);
         }, drivetrain));
     }
@@ -66,15 +72,18 @@ public class RobotContainer {
      * joysticks}.
      */
     private void configureBindings() {
+        // Example button bindings.
+        primaryController.b().onTrue(new Climb(climb));
+        primaryController.b().onFalse(new Declimb(climb));
     }
 
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
-    public Command getAutonomousCommand() {
-        // An example command will be run in autonomous
-        return Autos.exampleAuto(m_exampleSubsystem);
-    }
+    // /**
+    //  * Use this to pass the autonomous command to the main {@link Robot} class.
+    //  *
+    //  * @return the command to run in autonomous
+    //  */
+    // public Command getAutonomousCommand() {
+    //     // An example command will be run in autonomous
+    //     return Autos.exampleAuto(m_exampleSubsystem);
+    // }
 }
