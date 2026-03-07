@@ -91,6 +91,8 @@ public final class Constants {
 
     public static final class ShooterConstants {
         public static final int shooterMotorId = 0;
+        public static final int loaderMotorId = 0;
+        public static final int aimingMotorId = 0;
     }
 
     public static final class IntakeConstants {
