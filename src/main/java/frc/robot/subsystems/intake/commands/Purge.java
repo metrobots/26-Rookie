@@ -14,10 +14,15 @@ public class Purge extends Command {
     public void initialize() {
 
     }
+    
+    @Override
+    public void execute() {
+        intakeSubsystem.IntakeIn(-speed);
+    }
 
     @Override
     public void end(boolean interrupted) {
-
+        intakeSubsystem.intakeMotor.stopMotor();
     }
 
     @Override
