@@ -14,4 +14,12 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor = new SparkMax(IntakeConstants.intakeMotorId, MotorType.kBrushless);
         pivotMotor = new SparkMax(IntakeConstants.pivotMotorId, MotorType.kBrushless);
     }
+    public void PivotDown() {
+        pivotMotor.set(5);
+    return;
+    }
+    public void IntakeIn(double speed) {
+        intakeMotor.set(speed);
+    return;
+    }
 }
