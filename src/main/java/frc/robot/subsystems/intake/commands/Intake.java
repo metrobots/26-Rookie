@@ -16,8 +16,13 @@ public class Intake extends Command {
     }
 
     @Override
-    public void end(boolean interrupted) {
+    public void execute() {
+        intakeSubsystem.IntakeIn(speed);
+    }
 
+    @Override
+    public void end(boolean interrupted) {
+         intakeSubsystem.intakeMotor.stopMotor();
     }
 
     @Override
