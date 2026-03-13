@@ -53,7 +53,7 @@ public class RobotContainer {
                             * DriveConstants.driveInputDampeningFactor,
                     -MathUtil.applyDeadband(primaryController.getRightX(), OperatorConstants.driveDeadband)
                             * DriveConstants.driveInputDampeningFactor,
-                    false /* TODO: test drive field relative. */);
+                    true /* TODO: test drive field relative. */);
         }, drivetrain));
     }
 
