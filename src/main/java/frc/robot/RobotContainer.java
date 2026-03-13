@@ -73,8 +73,8 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Example button bindings.
-        primaryController.b().onTrue(new Climb(climb));
-        primaryController.b().onFalse(new Declimb(climb));
+        // primaryController.b().onTrue(new Climb(climb));
+        // primaryController.b().onFalse(new Declimb(climb));
     }
 
     // /**

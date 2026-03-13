@@ -32,7 +32,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DriveConstants.backLeftTurningId,
             DriveConstants.backLeftAngularOffset);
     // This is just here to demo how to commit files.
-    public final int tempVariable = 5;
+    // public final int tempVariable = 5;
 
     /** The robot uses a Studica NavX2 MXP IMU accelerometer connected to the MXP port on the RoboRio.
      * All measurements are given in terms of degrees. */
