@@ -1,12 +1,12 @@
 package frc.robot.subsystems.climb.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.climb.ClimbSubsystem;
+import frc.robot.subsystems.climb.Climb;
 
-public class Declimb extends Command {
-    private final ClimbSubsystem climbSubsystem;
+public class ClimbDown extends Command {
+    private final Climb climbSubsystem;
 
-    public Declimb(ClimbSubsystem climbSubsystem) {
+    public ClimbDown(Climb climbSubsystem) {
         this.climbSubsystem = climbSubsystem;
     }
 
