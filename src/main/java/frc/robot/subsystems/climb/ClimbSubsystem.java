@@ -16,7 +16,7 @@ public class ClimbSubsystem extends SubsystemBase {
     public ClimbSubsystem() {
         climbMotor = new SparkMax(ClimbConstants.climbMotorId, MotorType.kBrushless);
     }
-
+}
 //public class Climber extends SubsystemBase {
   
 //  private final PWMSparkMax climberMotor = new PWMSparkMax(0); // Assuming channel 0 for the motor
