@@ -54,8 +54,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
             },
             new Pose2d() // Assumes that the robot starts at the origin
     );
+    /** Dashboard */
     private final Field2d field2d = new Field2d();
-
     private final Sendable swerveDriveSendable = new Sendable() {
         @Override
         public void initSendable(SendableBuilder builder) {
@@ -75,14 +75,19 @@ public class DrivetrainSubsystem extends SubsystemBase {
         configureAutoBuilder();
         /* Send data to dashboard. */
         SmartDashboard.putData("Swerve Drive", swerveDriveSendable);
+        SmartDashboard.putData("Field", field2d);
     }
 
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Gyro", getHeading().getDegrees());
         poseEstimator.update(gyro.getRotation2d(), getModulePositions());
+        field2d.setRobotPose(getPose());
     }
 
+    /**
+     * Configure auto builder for use with PathPlanner.
+     */
     private void configureAutoBuilder() {
         RobotConfig config;
         try {
@@ -117,6 +122,22 @@ public class DrivetrainSubsystem extends SubsystemBase {
             // Handle exception as needed
             e.printStackTrace();
         }
+    }
+
+    private Pose2d getPose() {
+        return poseEstimator.getEstimatedPosition();
+    }
+
+    private void resetPose(Pose2d pose) {
+        poseEstimator.resetPose(pose);
+    }
+
+    private ChassisSpeeds getRobotRelativeSpeeds() {
+        return DriveConstants.driveKinematics.toChassisSpeeds(getModuleStates());
+    }
+
+    private void driveRobotRelative(ChassisSpeeds chassisSpeeds) {
+        setModuleStates(DriveConstants.driveKinematics.toSwerveModuleStates(chassisSpeeds));
     }
 
     /**
@@ -202,21 +223,5 @@ public class DrivetrainSubsystem extends SubsystemBase {
     public Rotation2d getHeading() {
         double direction = DriveConstants.isGyroReversed ? -1 : 1;
         return Rotation2d.fromDegrees(direction * gyro.getAngle());
-    }
-
-    private Pose2d getPose() {
-        return poseEstimator.getEstimatedPosition();
-    }
-
-    private void resetPose(Pose2d pose) {
-        poseEstimator.resetPose(pose);
-    }
-
-    private ChassisSpeeds getRobotRelativeSpeeds() {
-        return DriveConstants.driveKinematics.toChassisSpeeds(getModuleStates());
-    }
-
-    private void driveRobotRelative(ChassisSpeeds chassisSpeeds) {
-        setModuleStates(DriveConstants.driveKinematics.toSwerveModuleStates(chassisSpeeds));
     }
 }
