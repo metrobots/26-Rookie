@@ -8,7 +8,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.climb.Climb;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
-import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -29,7 +29,7 @@ public class RobotContainer {
     private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
     private final Climb climb = new Climb();
     private final ShooterSubsystem shooter = new ShooterSubsystem();
-    private final IntakeSubsystem intake = new IntakeSubsystem();
+    private final Intake intake = new Intake();
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController primaryController = new CommandXboxController(

@@ -1,12 +1,12 @@
 package frc.robot.subsystems.intake.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.intake.Intake;
 
-public class Intake extends Command {
-    private final IntakeSubsystem intakeSubsystem;
+public class IntakeIn extends Command {
+    private final Intake intakeSubsystem;
 
-    public Intake(IntakeSubsystem intakeSubsystem) {
+    public IntakeIn(Intake intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
     }
 
