@@ -44,9 +44,11 @@ public final class Constants {
         /** Vertical wheel center distance in meters (front to back). */
         public static final double chassisLength = Units.inchesToMeters(26.5);
         public static final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(
+                // Front Left Module
                 new Translation2d(chassisLength / 2, chassisWidth / 2),
-                new Translation2d(chassisLength / 2, -chassisWidth / 2),
-                new Translation2d(-chassisLength / 2, chassisWidth / 2),
+                // new Translation2d(chassisLength / 2, -chassisWidth / 2),
+                // new Translation2d(-chassisLength / 2, chassisWidth / 2),
+                // Back Right Module
                 new Translation2d(-chassisLength / 2, -chassisWidth / 2));
 
         /* Angular offsets of the modules relative to the chassis in radians */

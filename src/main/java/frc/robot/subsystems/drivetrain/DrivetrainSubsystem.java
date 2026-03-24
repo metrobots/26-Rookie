@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -19,27 +20,23 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DriveConstants.frontLeftDrivingId,
             DriveConstants.frontLeftTurningId,
             DriveConstants.frontLeftAngularOffset);
-    private final SwerveModule frontRight = new SwerveModule(
-            DriveConstants.frontRightDrivingId,
-            DriveConstants.frontRightTurningId,
-            DriveConstants.frontRightAngularOffset);
     private final SwerveModule backRight = new SwerveModule(
             DriveConstants.backRightDrivingId,
             DriveConstants.backRightTurningId,
             DriveConstants.backRightAngularOffset);
-    private final SwerveModule backLeft = new SwerveModule(
-            DriveConstants.backLeftDrivingId,
-            DriveConstants.backLeftTurningId,
-            DriveConstants.backLeftAngularOffset);
-    // This is just here to demo how to commit files.
-    // public final int tempVariable = 5;
 
     /** The robot uses a Studica NavX2 MXP IMU accelerometer connected to the MXP port on the RoboRio.
      * All measurements are given in terms of degrees. */
     private final AHRS gyro = new AHRS(NavXComType.kMXP_SPI);
 
     public DrivetrainSubsystem() {
+        resetEncoders();
         zeroHeading();
+    }
+
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Gyro", getHeading().getDegrees());
     }
 
     /**
@@ -77,9 +74,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, DriveConstants.maxSpeed);
         frontLeft.setDesiredState(desiredStates[0]);
-        frontRight.setDesiredState(desiredStates[1]);
-        backLeft.setDesiredState(desiredStates[2]);
-        backRight.setDesiredState(desiredStates[3]);
+        backRight.setDesiredState(desiredStates[1]);
     }
 
     /**
@@ -87,8 +82,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
      */
     public void resetEncoders() {
         frontLeft.syncAndResetEncoders();
-        frontRight.syncAndResetEncoders();
-        backLeft.syncAndResetEncoders();
         backRight.syncAndResetEncoders();
     }
 
