@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
-public class ShooterSubsystem extends SubsystemBase {
+public class Shooter extends SubsystemBase {
     private final SparkMax shooterMotor;
     private final SparkMax loaderMotor;
     public final SparkMax aimingMotor;
@@ -18,7 +18,7 @@ public class ShooterSubsystem extends SubsystemBase {
     PIDController aimingPidController = new PIDController(0.01, 0, 0);
     double WEEEE = 10;
 
-    public ShooterSubsystem() {
+    public Shooter() {
         shooterMotor = new SparkMax(ShooterConstants.shooterMotorId, MotorType.kBrushless);
         loaderMotor = new SparkMax(ShooterConstants.shooterMotorId, MotorType.kBrushless);
         aimingMotor = new SparkMax(ShooterConstants.shooterMotorId, MotorType.kBrushless);

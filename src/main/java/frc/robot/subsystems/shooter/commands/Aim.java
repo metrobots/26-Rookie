@@ -1,12 +1,12 @@
 package frc.robot.subsystems.shooter.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.shooter.ShooterSubsystem;
+import frc.robot.subsystems.shooter.Shooter;
 
 public class Aim extends Command {
-    private final ShooterSubsystem shooterSubsystem;
+    private final Shooter shooterSubsystem;
 
-    public Aim(ShooterSubsystem shooterSubsystem) {
+    public Aim(Shooter shooterSubsystem) {
         this.shooterSubsystem = shooterSubsystem;
     }
 
