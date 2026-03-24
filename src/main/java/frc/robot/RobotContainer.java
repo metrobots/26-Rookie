@@ -69,18 +69,5 @@ public class RobotContainer {
      * joysticks}.
      */
     private void configureBindings() {
-        // Example button bindings.
-        // primaryController.b().onTrue(new Climb(climb));
-        // primaryController.b().onFalse(new Declimb(climb));
     }
-
-    // /**
-    //  * Use this to pass the autonomous command to the main {@link Robot} class.
-    //  *
-    //  * @return the command to run in autonomous
-    //  */
-    // public Command getAutonomousCommand() {
-    //     // An example command will be run in autonomous
-    //     return Autos.exampleAuto(m_exampleSubsystem);
-    // }
 }

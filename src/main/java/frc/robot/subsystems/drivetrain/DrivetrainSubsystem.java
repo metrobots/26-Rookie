@@ -3,10 +3,15 @@ package frc.robot.subsystems.drivetrain;
 import com.studica.frc.AHRS;
 import com.studica.frc.AHRS.NavXComType;
 
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
@@ -16,6 +21,7 @@ import frc.robot.Constants.DriveConstants;
  * provided by Rev Robotics at https://github.com/REVrobotics/MAXSwerve-Java-Template/tree/main.
  */
 public class DrivetrainSubsystem extends SubsystemBase {
+    /** Define the modules. */
     private final SwerveModule frontLeft = new SwerveModule(
             DriveConstants.frontLeftDrivingId,
             DriveConstants.frontLeftTurningId,
@@ -24,19 +30,44 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DriveConstants.backRightDrivingId,
             DriveConstants.backRightTurningId,
             DriveConstants.backRightAngularOffset);
-
     /** The robot uses a Studica NavX2 MXP IMU accelerometer connected to the MXP port on the RoboRio.
      * All measurements are given in terms of degrees. */
     private final AHRS gyro = new AHRS(NavXComType.kMXP_SPI);
+    /** Pose estimation */
+    private final SwerveDrivePoseEstimator poseEstimator = new SwerveDrivePoseEstimator(
+        DriveConstants.driveKinematics,
+        gyro.getRotation2d(),
+        new SwerveModulePosition[] {
+            new SwerveModulePosition(0.0, new Rotation2d()),
+            new SwerveModulePosition(0.0, new Rotation2d())
+        },
+        new Pose2d() // Assumes that the robot starts at the origin
+    );
+
+    private final Sendable swerveDriveSendable = new Sendable() {
+        @Override
+        public void initSendable(SendableBuilder builder) {
+            builder.setSmartDashboardType("SwerveDrive");
+            builder.addDoubleProperty("Front Left Angle", () -> frontLeft.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty("Front Left Velocity", () -> frontLeft.getState().speedMetersPerSecond, null);
+            builder.addDoubleProperty("Back Right Angle", () -> backRight.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty("Back Right Velocity", () -> backRight.getState().speedMetersPerSecond, null);
+            builder.addDoubleProperty("Robot Angle", () -> getHeading().getRadians(), null);
+        }
+    };
 
     public DrivetrainSubsystem() {
+        /* Reset upon robot initialization. */
         resetEncoders();
         zeroHeading();
+        /* Send data to dashboard. */
+        SmartDashboard.putData("Swerve Drive", swerveDriveSendable);
     }
 
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Gyro", getHeading().getDegrees());
+        poseEstimator.update(gyro.getRotation2d(), getModulePositions());
     }
 
     /**
@@ -63,6 +94,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
                                 getHeading())
                         : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
         setModuleStates(swerveModuleStates);
+    }
+
+    private SwerveModulePosition[] getModulePositions() {
+        return new SwerveModulePosition[] {
+            frontLeft.getPosition(),
+            backRight.getPosition()
+        };
     }
 
     /**
