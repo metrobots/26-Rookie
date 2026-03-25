@@ -6,7 +6,6 @@ import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.studica.frc.AHRS;
 import com.studica.frc.AHRS.NavXComType;
-
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -28,7 +27,7 @@ import frc.robot.Constants.DriveConstants;
  * provided by Rev Robotics at
  * https://github.com/REVrobotics/MAXSwerve-Java-Template/tree/main.
  */
-public class DrivetrainSubsystem extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
     /** Define the modules. */
     private final SwerveModule frontLeft = new SwerveModule(
             DriveConstants.frontLeftDrivingId,
@@ -68,7 +67,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         }
     };
 
-    public DrivetrainSubsystem() {
+    public Drivetrain() {
         /* Reset upon robot initialization. */
         resetEncoders();
         zeroHeading();
@@ -215,13 +214,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     /**
      * @return The heading of the robot as Rotation2d object. The output is
-     *         continuous (i.e. 361º
-     *         does not wrap around to 1º). If the gyro is reversed (see
-     *         Constants.java), then the direction
-     *         is reversed.
+     *         continuous (i.e. 361º does not wrap around to 1º). If the gyro is
+     *         reversed
+     *         (see Constants.java), then the direction is reversed.
      */
     public Rotation2d getHeading() {
-        double direction = DriveConstants.isGyroReversed ? -1 : 1;
-        return Rotation2d.fromDegrees(direction * gyro.getAngle());
+        return Rotation2d.fromDegrees(gyro.getAngle());
     }
 }

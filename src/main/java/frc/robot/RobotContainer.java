@@ -7,7 +7,7 @@ package frc.robot;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.climb.Climb;
-import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
+import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
 
@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
-    private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+    private final Drivetrain drivetrain = new Drivetrain();
     private final Climb climb = new Climb();
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
@@ -56,8 +56,8 @@ public class RobotContainer {
     }
 
     /**
-    * Configure controller bindings.
-    */
+     * Configure controller bindings.
+     */
     private void configureBindings() {
         drivetrain.setDefaultCommand(new RunCommand(() -> {
             drivetrain.drive(
