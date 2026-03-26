@@ -30,8 +30,10 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
-        /* Note that these are not the maximum capable speeds of the robot, rather
-        the allowed maximum speeds */
+        /*
+         * Note that these are not the maximum capable speeds of the robot, rather
+         * the allowed maximum speeds
+         */
         /** Max speed in meters per second. */
         public static final double maxSpeed = 4.8;
         /** Max angular speed in radians per second. */
@@ -46,8 +48,6 @@ public final class Constants {
         public static final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(
                 // Front Left Module
                 new Translation2d(chassisLength / 2, chassisWidth / 2),
-                // new Translation2d(chassisLength / 2, -chassisWidth / 2),
-                // new Translation2d(-chassisLength / 2, chassisWidth / 2),
                 // Back Right Module
                 new Translation2d(-chassisLength / 2, -chassisWidth / 2));
 
@@ -58,18 +58,12 @@ public final class Constants {
         public static final double backRightAngularOffset = Math.PI / 2;
 
         /* SPARK MAX CAN IDs */
-        /* Driving IDs */
+        /* Front Left */
         public static final int frontLeftDrivingId = 22;
-        // public static final int frontRightDrivingId = 32;
-        public static final int backRightDrivingId = 4;
-        // public static final int backLeftDrivingId = 7;
-        /* Turning IDs */
         public static final int frontLeftTurningId = 42;
-        // public static final int frontRightTurningId = 2;
+        /* Back Right */
+        public static final int backRightDrivingId = 4;
         public static final int backRightTurningId = 7;
-        // public static final int backLeftTurningId = 40;
-        /* Other */
-        public static final boolean isGyroReversed = false;
     }
 
     public static final class SwerveModuleConstants {

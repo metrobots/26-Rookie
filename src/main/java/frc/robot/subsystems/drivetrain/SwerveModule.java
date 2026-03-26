@@ -15,9 +15,11 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.Configs.SwerveConfig;
 
 /**
- * Class for encapsulating the behavior of a single swerve module. When looking at the swerve module
- * from the top, forwards is positive and backwards is negative. (CCW/CW) is positive and (CCW/CW)
- * is negative. 
+ * Class for encapsulating the behavior of a single swerve module. When looking
+ * at the swerve module
+ * from the top, forwards is positive and backwards is negative. (CCW/CW) is
+ * positive and (CCW/CW)
+ * is negative.
  * 
  * TODO: ^^^^ Check this ^^^^.
  */
@@ -37,10 +39,12 @@ public class SwerveModule {
     private SwerveModuleState desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
     /**
-     * Constructor for swerve module. The driving and turning motors are intialized and configured
-     * (see Configs.java) for more information. Also, the encoders are reset and synced.
+     * Constructor for swerve module. The driving and turning motors are intialized
+     * and configured
+     * (see Configs.java) for more information. Also, the encoders are reset and
+     * synced.
      * 
-     * @param drivingId The 
+     * @param drivingId     The
      * @param turningId
      * @param angularOffset
      */
@@ -85,7 +89,8 @@ public class SwerveModule {
     }
 
     /**
-     * Sets the desired state of the module. The turning is (should be) optimized to take the
+     * Sets the desired state of the module. The turning is (should be) optimized to
+     * take the
      * shortest path.
      * 
      * @param desiredState

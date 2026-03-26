@@ -9,5 +9,13 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Autos {
-    // public static Command defaultAuto = new PathPlannerAuto("Default");
+    private final Command defaultAuto;
+
+    public Autos() {
+        defaultAuto = new PathPlannerAuto("Default");
+    }
+
+    public Command getDefaultAuto() {
+        return defaultAuto;
+    }
 }

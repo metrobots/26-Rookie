@@ -6,7 +6,6 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
@@ -28,6 +27,7 @@ public class Shooter extends SubsystemBase {
     public void ShooterSpinny(double speed) {
         shooterMotor.set(speed);
     }
+
     public void LoaderSpinny(double speed) {
         loaderMotor.set(speed);
     }
@@ -36,15 +36,15 @@ public class Shooter extends SubsystemBase {
         aimingMotor.set(speed);
     }
 
+    public void aimingAuto(double target) {
+        aimingMotor.set(aimingPidController.calculate(aimingEncoder.getPosition(), target));
 
-    public void aimingAuto(double target){
-        aimingMotor.set(aimingPidController.calculate(aimingEncoder.getPosition(),target));
-        
     }
-//CHANGE TARGET BASED ON VISION
-    public void aimNShoot(double whichTarget){
+
+    // CHANGE TARGET BASED ON VISION
+    public void aimNShoot(double whichTarget) {
         aimingAuto(0);
-        if((aimingEncoder.getPosition() <= whichTarget+0.5) && (whichTarget-0.5 <= aimingEncoder.getPosition())){
+        if ((aimingEncoder.getPosition() <= whichTarget + 0.5) && (whichTarget - 0.5 <= aimingEncoder.getPosition())) {
             ShooterSpinny(WEEEE);
         }
     }
