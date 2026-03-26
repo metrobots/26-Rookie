@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /**
@@ -30,9 +31,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private final Drivetrain drivetrain = new Drivetrain();
-    private final Climb climb = new Climb();
-    private final Shooter shooter = new Shooter();
-    private final Intake intake = new Intake();
+    // private final Climb climb = new Climb();
+    // private final Shooter shooter = new Shooter();
+    // private final Intake intake = new Intake();
     // Auto Chooser
     SendableChooser<Command> autoChooser = new SendableChooser<>();
 
@@ -52,7 +53,8 @@ public class RobotContainer {
     }
 
     private void configureAutoChooser() {
-        autoChooser.setDefaultOption("Default", Autos.defaultAuto);
+        autoChooser.setDefaultOption("Default", new RunCommand(() -> {}, new SubsystemBase[]{}));
+        // autoChooser.setDefaultOption("Default", Autos.defaultAuto);
     }
 
     /**
