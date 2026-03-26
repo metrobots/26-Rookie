@@ -52,7 +52,6 @@ public final class Constants {
                 new Translation2d(-chassisLength / 2, -chassisWidth / 2));
 
         /* Angular offsets of the modules relative to the chassis in radians */
-        // TODO: Zero encoders
         public static final double frontLeftAngularOffset = -Math.PI / 2;
         public static final double frontRightAngularOffset = 0;
         public static final double backLeftAngularOffset = Math.PI;
@@ -61,14 +60,14 @@ public final class Constants {
         /* SPARK MAX CAN IDs */
         /* Driving IDs */
         public static final int frontLeftDrivingId = 22;
-        public static final int frontRightDrivingId = 32;
-        public static final int backRightDrivingId = 42;
-        public static final int backLeftDrivingId = 7;
+        // public static final int frontRightDrivingId = 32;
+        public static final int backRightDrivingId = 4;
+        // public static final int backLeftDrivingId = 7;
         /* Turning IDs */
-        public static final int frontLeftTurningId = 5;
-        public static final int frontRightTurningId = 2;
+        public static final int frontLeftTurningId = 42;
+        // public static final int frontRightTurningId = 2;
         public static final int backRightTurningId = 7;
-        public static final int backLeftTurningId = 40;
+        // public static final int backLeftTurningId = 40;
         /* Other */
         public static final boolean isGyroReversed = false;
     }
