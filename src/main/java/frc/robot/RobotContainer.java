@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public class RobotContainer {
     /* Subsystems */
-    private final Drivetrain drivetrain = new Drivetrain();
+    // private final Drivetrain drivetrain = new Drivetrain();
     /* Auto Chooser */
     // Auto's need to be initialized AFTER all other subsystems.
     private final Autos autos = new Autos();
@@ -56,16 +56,16 @@ public class RobotContainer {
      * Configure controller bindings.
      */
     private void configureBindings() {
-        drivetrain.setDefaultCommand(new RunCommand(() -> {
-            drivetrain.drive(
-                    -MathUtil.applyDeadband(primaryController.getLeftY(), OperatorConstants.driveDeadband)
-                            * DriveConstants.driveInputDampeningFactor,
-                    -MathUtil.applyDeadband(primaryController.getLeftX(), OperatorConstants.driveDeadband)
-                            * DriveConstants.driveInputDampeningFactor,
-                    -MathUtil.applyDeadband(primaryController.getRightX(), OperatorConstants.driveDeadband)
-                            * DriveConstants.driveInputDampeningFactor,
-                    true);
-        }, drivetrain));
+        // drivetrain.setDefaultCommand(new RunCommand(() -> {
+        //     drivetrain.drive(
+        //             -MathUtil.applyDeadband(primaryController.getLeftY(), OperatorConstants.driveDeadband)
+        //                     * DriveConstants.driveInputDampeningFactor,
+        //             -MathUtil.applyDeadband(primaryController.getLeftX(), OperatorConstants.driveDeadband)
+        //                     * DriveConstants.driveInputDampeningFactor,
+        //             -MathUtil.applyDeadband(primaryController.getRightX(), OperatorConstants.driveDeadband)
+        //                     * DriveConstants.driveInputDampeningFactor,
+        //             true);
+        // }, drivetrain));
     }
 
     public Command getSelectedAuto() {
