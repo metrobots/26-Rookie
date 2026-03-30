@@ -50,7 +50,7 @@ public final class Constants {
                 new Translation2d(chassisLength / 2, chassisWidth / 2),
                 // Back Right Module
                 new Translation2d(-chassisLength / 2, -chassisWidth / 2));
-
+  
         /* Angular offsets of the modules relative to the chassis in radians */
         public static final double frontLeftAngularOffset = -Math.PI / 2;
         public static final double frontRightAngularOffset = 0;
@@ -59,8 +59,8 @@ public final class Constants {
 
         /* SPARK MAX CAN IDs */
         /* Front Left */
-        public static final int frontLeftDrivingId = 22;
-        public static final int frontLeftTurningId = 42;
+        public static final int frontLeftDrivingId = 42;
+        public static final int frontLeftTurningId = 22;
         /* Back Right */
         public static final int backRightDrivingId = 4;
         public static final int backRightTurningId = 7;
